@@ -6,6 +6,7 @@ import { DatabaseModule } from './database/database.module';
 import { EmployeesModule } from './employees/employees.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { MyLoggerModule } from './my-logger/my-logger.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { APP_GUARD } from '@nestjs/core';
       name: 'long',
       ttl: 60000, // 1 min
       limit: 100 // 100 requests => 100 req / 1 minut
-    }])
+    }]),
+    MyLoggerModule
   ],
   controllers: [AppController],
   providers: [AppService, {
